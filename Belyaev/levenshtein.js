@@ -1,5 +1,5 @@
 
-// РАБОТАЮЩИЙ ПРИМЕР - https://jsfiddle.net/os5ra7L3/4/
+// РАБОТАЮЩИЙ ПРИМЕР - https://jsfiddle.net/os5ra7L3/5/
 
 getSubtractionValue = (sourceString, queryString, weight) => {
 	// для удобства, обозначу через x и y строки
@@ -57,8 +57,12 @@ getSubtractionValue = (sourceString, queryString, weight) => {
       } else {
         // если значения не равны
         // проверяем транспозицию
-        if (resultArr[j-2] && resultArr[j-2][i-2] && (x[i] === y[j-1] && x[i-1] === y[j])) {
-          data = weight+getMin([resultArr[j][i-1],resultArr[j-1][i-1],resultArr[j-1][i], resultArr[j-2][i-2]])
+        if (resultArr[j-1] && resultArr[j-1][i-1] && (x[i] === y[j-1] && x[i-1] === y[j])) {
+        	if (resultArr[j-2] && resultArr[j-2][i-2]) {
+          	data = weight+getMin([resultArr[j][i-1],resultArr[j-1][i-1],resultArr[j-1][i], resultArr[j-2][i-2]])
+          } else {
+          	data = weight+getMin([resultArr[j][i-1],resultArr[j-1][i-1],resultArr[j-1][i], 0])
+          }
         } else {
         	// если это первая строка, то 2 значения - это i и i+1
           if (j===0) {
@@ -89,6 +93,6 @@ getSubtractionValue = (sourceString, queryString, weight) => {
 }
 
 let sourceString = 'компьютер';
-let queryString = 'компуктре';
+let queryString = 'кмопьютер';
 let weight = 1;
 getSubtractionValue(sourceString, queryString, weight)
